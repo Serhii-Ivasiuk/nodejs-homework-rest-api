@@ -8,17 +8,44 @@ const HttpError = require('../../helpers/HttpError');
 
 const router = express.Router();
 
-const validationSchema = Joi.object({
-    name: Joi.string().min(3).max(30).required(),
+const addContactSchema = Joi.object({
+    name: Joi.string().min(3).max(30).required().messages({
+        'any.required': 'missing required "name" field',
+    }),
 
     email: Joi.string()
         .email({
             minDomainSegments: 2,
             tlds: { allow: ['com', 'net'] },
         })
-        .required(),
+        .required()
+        .messages({
+            'any.required': 'missing required "email" field',
+        }),
 
-    phone: Joi.string().required(),
+    phone: Joi.string().required().messages({
+        'any.required': 'missing required "phone" field',
+    }),
+});
+
+const updateContactSchema = Joi.object({
+    name: Joi.string().min(3).max(30).required().messages({
+        'any.required': 'missing field "name"',
+    }),
+
+    email: Joi.string()
+        .email({
+            minDomainSegments: 2,
+            tlds: { allow: ['com', 'net'] },
+        })
+        .required()
+        .messages({
+            'any.required': 'missing field "email"',
+        }),
+
+    phone: Joi.string().required().messages({
+        'any.required': 'missing field "phone"',
+    }),
 });
 
 router.get('/', async (req, res, next) => {
@@ -49,7 +76,7 @@ router.get('/:contactId', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const { error } = validationSchema.validate(req.body);
+        const { error } = addContactSchema.validate(req.body);
 
         if (error) {
             throw HttpError(400, error.message);
@@ -81,7 +108,7 @@ router.delete('/:contactId', async (req, res, next) => {
 
 router.put('/:contactId', async (req, res, next) => {
     try {
-        const { error } = validationSchema.validate(req.body);
+        const { error } = updateContactSchema.validate(req.body);
 
         if (error) {
             throw HttpError(400, error.message);
