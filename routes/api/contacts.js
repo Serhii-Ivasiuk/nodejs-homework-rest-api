@@ -2,7 +2,7 @@
 const express = require('express');
 const Joi = require('joi');
 // Models
-const fileAPI = require('../../models/contacts');
+const dataAPI = require('../../models/contacts');
 // Helpers
 const HttpError = require('../../helpers/HttpError');
 
@@ -50,7 +50,7 @@ const updateContactSchema = Joi.object({
 
 router.get('/', async (req, res, next) => {
     try {
-        const result = await fileAPI.listContacts();
+        const result = await dataAPI.listContacts();
 
         res.json(result);
     } catch (error) {
@@ -62,7 +62,7 @@ router.get('/:contactId', async (req, res, next) => {
     try {
         const { contactId } = req.params;
 
-        const result = await fileAPI.getContactById(contactId);
+        const result = await dataAPI.getContactById(contactId);
 
         if (!result) {
             throw HttpError(404, 'Not found');
@@ -82,7 +82,7 @@ router.post('/', async (req, res, next) => {
             throw HttpError(400, error.message);
         }
 
-        const result = await fileAPI.addContact(req.body);
+        const result = await dataAPI.addContact(req.body);
 
         res.status(201).json(result);
     } catch (error) {
@@ -94,7 +94,7 @@ router.delete('/:contactId', async (req, res, next) => {
     try {
         const { contactId } = req.params;
 
-        const result = await fileAPI.removeContact(contactId);
+        const result = await dataAPI.removeContact(contactId);
 
         if (!result) {
             throw HttpError(404, 'Not found');
@@ -116,7 +116,7 @@ router.put('/:contactId', async (req, res, next) => {
 
         const { contactId } = req.params;
 
-        const result = await fileAPI.updateContact(contactId, req.body);
+        const result = await dataAPI.updateContact(contactId, req.body);
 
         if (!result) {
             throw HttpError(404, 'Not found');
