@@ -41,12 +41,7 @@ const removeContact = async contactId => {
 const addContact = async body => {
     const allContacts = await listContacts();
 
-    const isExistingContact = checkExistingContact(
-        allContacts,
-        body.name,
-        body.email,
-        body.phone
-    );
+    const isExistingContact = checkExistingContact(allContacts, body);
 
     if (isExistingContact) {
         throw HttpError(400, isExistingContact);
