@@ -48,7 +48,7 @@ const updateStatus = Joi.object({
 
 const JoiSchemas = { add, update, updateStatus };
 
-// Mongoose chemas
+// Mongoose schemas
 const schema = {
     name: {
         type: String,
