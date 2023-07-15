@@ -27,9 +27,7 @@ const removeContact = async contactId => {
 
     const index = allContacts.findIndex(item => item.id === contactId);
 
-    if (index === -1) {
-        return null;
-    }
+    if (index === -1) return null;
 
     const [removedContact] = allContacts.splice(index, 1);
 
@@ -43,9 +41,7 @@ const addContact = async body => {
 
     const isExistingContact = checkExistingContact(allContacts, body);
 
-    if (isExistingContact) {
-        throw HttpError(400, isExistingContact);
-    }
+    if (isExistingContact) throw HttpError(400, isExistingContact);
 
     const newContact = {
         id: await generateId(),
@@ -64,9 +60,7 @@ const updateContact = async (contactId, body) => {
 
     const index = allContacts.findIndex(item => item.id === contactId);
 
-    if (index === -1) {
-        return null;
-    }
+    if (index === -1) return null;
 
     const updatedContact = (allContacts[index] = {
         id: contactId,

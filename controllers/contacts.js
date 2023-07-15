@@ -15,9 +15,7 @@ const getContactById = async (req, res) => {
 
     const result = await dataAPI.getContactById(contactId);
 
-    if (!result) {
-        throw HttpError(404, 'Not found');
-    }
+    if (!result) throw HttpError(404);
 
     res.json(result);
 };
@@ -33,9 +31,7 @@ const deleteContactById = async (req, res) => {
 
     const result = await dataAPI.removeContact(contactId);
 
-    if (!result) {
-        throw HttpError(404, 'Not found');
-    }
+    if (!result) throw HttpError(404);
 
     res.json({ message: 'contact deleted' });
 };
@@ -45,9 +41,7 @@ const updateContactById = async (req, res) => {
 
     const result = await dataAPI.updateContact(contactId, req.body);
 
-    if (!result) {
-        throw HttpError(404, 'Not found');
-    }
+    if (!result) throw HttpError(404);
 
     res.json(result);
 };
