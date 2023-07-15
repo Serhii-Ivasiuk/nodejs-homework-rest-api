@@ -18,6 +18,7 @@ const add = Joi.object({
     phone: Joi.string().required().messages({
         'any.required': 'missing required "phone" field',
     }),
+    favorite: Joi.boolean(),
 });
 
 const update = Joi.object({
@@ -36,9 +37,14 @@ const update = Joi.object({
     phone: Joi.string().required().messages({
         'any.required': 'missing field "phone"',
     }),
+    favorite: Joi.boolean(),
 });
 
-const JoiSchemas = { add, update };
+const updateStatus = Joi.object({
+    favorite: Joi.boolean().required(),
+});
+
+const JoiSchemas = { add, update, updateStatus };
 
 // Mongoose chemas
 const schema = {
@@ -53,6 +59,10 @@ const schema = {
     phone: {
         type: String,
         required: [true, 'Set "phone" for contact'],
+    },
+    favorite: {
+        type: Boolean,
+        default: false,
     },
 };
 

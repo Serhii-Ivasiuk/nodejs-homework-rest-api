@@ -25,4 +25,11 @@ router.put(
     ctrl.updateContactById
 );
 
+router.patch(
+    '/:contactId/favorite',
+    isValidId,
+    validateBody(JoiSchemas.updateStatus),
+    ctrl.updateContactStatusById
+);
+
 module.exports = router;

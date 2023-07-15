@@ -48,10 +48,23 @@ const updateContactById = async (req, res) => {
     res.json(result);
 };
 
+const updateContactStatusById = async (req, res) => {
+    const { contactId } = req.params;
+
+    const result = await Contact.findByIdAndUpdate(contactId, req.body, {
+        new: true,
+    });
+
+    if (!result) throw HttpError(404);
+
+    res.json(result);
+};
+
 module.exports = {
     getAllContacts: ctrlWrapper(getAllContacts),
     getContactById: ctrlWrapper(getContactById),
     addContact: ctrlWrapper(addContact),
     deleteContactById: ctrlWrapper(deleteContactById),
     updateContactById: ctrlWrapper(updateContactById),
+    updateContactStatusById: ctrlWrapper(updateContactStatusById),
 };
