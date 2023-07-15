@@ -3,8 +3,7 @@ const express = require('express');
 // Controllers
 const ctrl = require('../../controllers/contacts');
 // Middlewares
-const validateBody = require('../../middlewares/validateBody');
-const isValidId = require('../../middlewares/isValidId');
+const { validateBody, isValidId } = require('../../middlewares');
 // Validation schemas
 const { JoiSchemas } = require('../../schemas/contacts');
 
