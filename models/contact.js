@@ -1,7 +1,7 @@
 // Libs
 const { Schema, model } = require('mongoose');
 // Helpers
-const handleMongooseError = require('../helpers/handleMongooseError');
+const { handleMongooseError } = require('../helpers');
 // Modules
 const { mongooseSchema } = require('../schemas/contacts');
 
