@@ -46,7 +46,7 @@ const updateStatus = Joi.object({
     }),
 });
 
-const JoiSchemas = { add, update, updateStatus };
+const joiContactsSchemas = { add, update, updateStatus };
 
 // Mongoose schemas
 const schema = {
@@ -75,9 +75,9 @@ const settings = {
     versionKey: false,
 };
 
-const mongooseSchema = [schema, settings];
+const mongooseContactsSchema = [schema, settings];
 
 module.exports = {
-    JoiSchemas,
-    mongooseSchema,
+    joiContactsSchemas,
+    mongooseContactsSchema,
 };

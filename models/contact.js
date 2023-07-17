@@ -3,9 +3,9 @@ const { Schema, model } = require('mongoose');
 // Helpers
 const { handleMongooseError } = require('../helpers');
 // Modules
-const { mongooseSchema } = require('../schemas/contacts');
+const { mongooseContactsSchema } = require('../schemas');
 
-const contactSchema = new Schema(...mongooseSchema);
+const contactSchema = new Schema(...mongooseContactsSchema);
 
 contactSchema.post('save', handleMongooseError);
 
