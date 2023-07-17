@@ -3,7 +3,11 @@ const express = require('express');
 // Controllers
 const ctrl = require('../../controllers/contacts');
 // Middlewares
-const { validateBody, isValidId } = require('../../middlewares');
+const {
+    isValidId,
+    validateBody,
+    validateEmptyBody,
+} = require('../../middlewares');
 // Validation schemas
 const { JoiSchemas } = require('../../schemas/contacts');
 
@@ -20,6 +24,7 @@ router.delete('/:contactId', isValidId, ctrl.deleteContactById);
 router.put(
     '/:contactId',
     isValidId,
+    validateEmptyBody,
     validateBody(JoiSchemas.update),
     ctrl.updateContactById
 );
