@@ -1,15 +1,15 @@
 // Libs
 const { Schema, model } = require('mongoose');
 // Hooks
-const { handleMongooseError } = require('../hooks');
+const { handleDBSavingError } = require('../hooks');
 // Modules
 const { mongooseContactsSchema } = require('../schemas');
 
 const contactSchema = new Schema(...mongooseContactsSchema);
 
-contactSchema.post('save', handleMongooseError);
+contactSchema.post('save', handleDBSavingError);
 
-contactSchema.post('findOneAndUpdate', handleMongooseError);
+contactSchema.post('findOneAndUpdate', handleDBSavingError);
 
 const Contact = model('contact', contactSchema);
 

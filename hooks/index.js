@@ -1,5 +1,5 @@
-const handleMongooseError = require('./handleMongooseError');
+const handleDBSavingError = require('./handleDBSavingError');
 
 module.exports = {
-    handleMongooseError,
+    handleDBSavingError,
 };

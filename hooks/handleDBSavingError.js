@@ -1,4 +1,4 @@
-const handleMongooseError = (error, data, next) => {
+const handleDBSavingError = (error, data, next) => {
     if (error.code === 11000 && error.name === 'MongoServerError') {
         const [field, value] = Object.entries(error.keyValue)[0];
 
@@ -12,4 +12,4 @@ const handleMongooseError = (error, data, next) => {
     next();
 };
 
-module.exports = handleMongooseError;
+module.exports = handleDBSavingError;
