@@ -6,7 +6,10 @@ const { HttpError } = require('../../helpers');
 const getContactById = async (req, res) => {
     const { contactId } = req.params;
 
-    const result = await Contact.findById(contactId);
+    const result = await Contact.findById(contactId).populate(
+        'owner',
+        'email subscription'
+    );
 
     if (!result) throw HttpError(404);
 

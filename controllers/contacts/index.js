@@ -1,4 +1,4 @@
-// Helpers
+// Decorators
 const { ctrlWrapper } = require('../../decorators');
 // Controllers
 const getAllContacts = require('./getAllContacts');

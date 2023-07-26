@@ -1,3 +1,5 @@
 const subscriptionList = ['starter', 'pro', 'business'];
 
-module.exports = subscriptionList;
+const BEARER = 'Bearer';
+
+module.exports = { subscriptionList, BEARER };

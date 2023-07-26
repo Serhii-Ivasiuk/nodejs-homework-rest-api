@@ -23,4 +23,8 @@ usersRouter.post(
     ctrl.login
 );
 
+usersRouter.post('/logout', mdw.authenticate, ctrl.logout);
+
+usersRouter.get('/current', mdw.authenticate, ctrl.current);
+
 module.exports = usersRouter;
