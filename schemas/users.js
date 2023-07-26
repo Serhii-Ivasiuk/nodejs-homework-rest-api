@@ -38,7 +38,18 @@ const login = Joi.object({
         }),
 });
 
-const joiUsersSchemas = { register, login };
+const updateSubscription = Joi.object({
+    subscription: Joi.string()
+        .valid(...subscriptionList)
+        .required()
+        .messages({
+            'any.required': 'missing field "subscription"',
+            'any.only':
+                'Invalid subscription type. It should be one of "starter", "pro", or "business"',
+        }),
+});
+
+const joiUsersSchemas = { register, login, updateSubscription };
 
 // Mongoose schemas
 const schema = {

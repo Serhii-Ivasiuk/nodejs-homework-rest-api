@@ -27,4 +27,12 @@ usersRouter.post('/logout', mdw.authenticate, ctrl.logout);
 
 usersRouter.get('/current', mdw.authenticate, ctrl.current);
 
+usersRouter.patch(
+    '/',
+    mdw.authenticate,
+    mdw.validateEmptyBody,
+    mdw.validateBody(joiUsersSchemas.updateSubscription),
+    ctrl.updateSubscription
+);
+
 module.exports = usersRouter;
