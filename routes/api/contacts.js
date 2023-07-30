@@ -22,6 +22,7 @@ contactsRouter.post(
     '/',
     mdw.authenticate,
     mdw.validateBody(joiContactsSchemas.add),
+    mdw.checkDuplicateContact,
     ctrl.addContact
 );
 
