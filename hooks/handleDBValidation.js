@@ -1,5 +1,5 @@
 const handleDBValidation = function (next) {
-    this.options.runValidators = true;
+    this.options.runValidators = true; // using function declaration because of "this"
 
     next();
 };
