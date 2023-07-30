@@ -1,7 +1,7 @@
 // Helpers
 const { HttpError } = require('../helpers');
 
-const validateEmptyBody = async (req, res, next) => {
+const validateEmptyBody = (req, res, next) => {
     const isEmptyBody = Object.keys(req.body).length === 0;
 
     if (isEmptyBody) next(HttpError(400, 'missing fields'));

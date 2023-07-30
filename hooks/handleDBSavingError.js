@@ -1,8 +1,8 @@
-const handleMongooseError = (error, data, next) => {
+const handleDBSavingError = (error, data, next) => {
     if (error.code === 11000 && error.name === 'MongoServerError') {
         const [field, value] = Object.entries(error.keyValue)[0];
 
-        error.message = `Contact with "${field}" "${value}" is already exist`;
+        error.message = `Object with "${field}" "${value}" is already exist`;
 
         error.status = 409;
     } else {
@@ -12,4 +12,4 @@ const handleMongooseError = (error, data, next) => {
     next();
 };
 
-module.exports = handleMongooseError;
+module.exports = handleDBSavingError;

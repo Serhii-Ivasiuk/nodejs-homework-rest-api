@@ -9,20 +9,33 @@ const { joiContactsSchemas } = require('../../schemas');
 
 const contactsRouter = express.Router();
 
-contactsRouter.get('/', ctrl.getAllContacts);
+contactsRouter.get('/', mdw.authenticate, ctrl.getAllContacts);
 
-contactsRouter.get('/:contactId', mdw.isValidId, ctrl.getContactById);
+contactsRouter.get(
+    '/:contactId',
+    mdw.authenticate,
+    mdw.isValidId,
+    ctrl.getContactById
+);
 
 contactsRouter.post(
     '/',
+    mdw.authenticate,
     mdw.validateBody(joiContactsSchemas.add),
+    mdw.checkDuplicateContact,
     ctrl.addContact
 );
 
-contactsRouter.delete('/:contactId', mdw.isValidId, ctrl.deleteContactById);
+contactsRouter.delete(
+    '/:contactId',
+    mdw.authenticate,
+    mdw.isValidId,
+    ctrl.deleteContactById
+);
 
 contactsRouter.put(
     '/:contactId',
+    mdw.authenticate,
     mdw.isValidId,
     mdw.validateEmptyBody,
     mdw.validateBody(joiContactsSchemas.update),
@@ -31,6 +44,7 @@ contactsRouter.put(
 
 contactsRouter.patch(
     '/:contactId/favorite',
+    mdw.authenticate,
     mdw.isValidId,
     mdw.validateBody(joiContactsSchemas.updateStatus),
     ctrl.updateContactStatusById

@@ -4,7 +4,7 @@ const logger = require('morgan');
 const cors = require('cors');
 require('dotenv').config(); // add env variables from file ".env" to project
 
-const { contactsRouter } = require('./routes/api');
+const { contactsRouter, usersRouter } = require('./routes/api');
 
 const app = express();
 
@@ -14,6 +14,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
+app.use('/api/users', usersRouter);
 app.use('/api/contacts', contactsRouter);
 
 app.use((req, res) => {
