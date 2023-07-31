@@ -13,13 +13,13 @@ const modifyAvatar = async (req, res, next) => {
         const uploadedFile = await Jimp.read(path);
 
         uploadedFile.cover(250, 250).write(path);
-
-        next();
     } catch {
         await fs.unlink(path);
 
         return next(HttpError(400, 'Bad file'));
     }
+
+    next();
 };
 
 module.exports = modifyAvatar;
