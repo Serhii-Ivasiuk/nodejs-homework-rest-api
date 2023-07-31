@@ -67,6 +67,10 @@ const schema = {
         enum: usersSubscriptionList,
         default: 'starter',
     },
+    avatarURL: {
+        type: String,
+        required: true,
+    },
     token: { type: String, default: '' },
 };
 
