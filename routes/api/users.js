@@ -39,6 +39,7 @@ usersRouter.patch(
     '/avatars',
     mdw.authenticate,
     mdw.uploadAvatar.single('avatar'),
+    mdw.modifyAvatar,
     ctrl.updateAvatar
 );
 
