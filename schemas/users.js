@@ -1,7 +1,7 @@
 // Libs
 const Joi = require('joi');
 // Constants
-const { subscriptionList } = require('../constants');
+const { usersSubscriptionList } = require('../constants');
 
 // Joi schemas
 const register = Joi.object({
@@ -18,7 +18,7 @@ const register = Joi.object({
         'any.required': 'missing required "password" field',
     }),
     subscription: Joi.string()
-        .valid(...subscriptionList)
+        .valid(...usersSubscriptionList)
         .default('starter'),
     token: Joi.string().default(''),
 });
@@ -40,7 +40,7 @@ const login = Joi.object({
 
 const updateSubscription = Joi.object({
     subscription: Joi.string()
-        .valid(...subscriptionList)
+        .valid(...usersSubscriptionList)
         .required()
         .messages({
             'any.required': 'missing field "subscription"',
@@ -64,7 +64,7 @@ const schema = {
     },
     subscription: {
         type: String,
-        enum: subscriptionList,
+        enum: usersSubscriptionList,
         default: 'starter',
     },
     token: { type: String, default: '' },

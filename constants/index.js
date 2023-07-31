@@ -1,7 +1,5 @@
-const { subscriptionList } = require('./constants');
-const { BEARER } = require('./constants');
+const { usersSubscriptionList } = require('./constants');
 
 module.exports = {
-    subscriptionList,
-    BEARER,
+    usersSubscriptionList,
 };

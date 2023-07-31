@@ -4,8 +4,6 @@ const jwt = require('jsonwebtoken');
 const { HttpError } = require('../helpers');
 // Models
 const { User } = require('../models');
-// Constants
-const { BEARER } = require('../constants/constants');
 // Environment variables
 const { JWT_SECRET_KEY } = process.env;
 
@@ -14,7 +12,7 @@ const authenticate = async (req, res, next) => {
 
     const [bearer, token] = authorization.split(' ');
 
-    if (bearer !== BEARER) return next(HttpError(401, 'Not authorized'));
+    if (bearer !== 'Bearer') return next(HttpError(401, 'Not authorized'));
 
     try {
         const { id } = jwt.verify(token, JWT_SECRET_KEY); // automatically throwing error when token is not valid or expired (need try...catch)

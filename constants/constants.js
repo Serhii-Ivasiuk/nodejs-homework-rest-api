@@ -1,5 +1,3 @@
-const subscriptionList = ['starter', 'pro', 'business'];
+const usersSubscriptionList = ['starter', 'pro', 'business'];
 
-const BEARER = 'Bearer';
-
-module.exports = { subscriptionList, BEARER };
+module.exports = { usersSubscriptionList };
