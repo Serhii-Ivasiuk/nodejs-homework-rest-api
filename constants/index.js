@@ -1,7 +1,7 @@
-const { subscriptionList } = require('./constants');
-const { BEARER } = require('./constants');
+const { usersSubscriptionList } = require('./constants');
+const { allowedImagesMimeTypes } = require('./constants');
 
 module.exports = {
-    subscriptionList,
-    BEARER,
+    usersSubscriptionList,
+    allowedImagesMimeTypes,
 };

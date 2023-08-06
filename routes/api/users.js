@@ -35,4 +35,12 @@ usersRouter.patch(
     ctrl.updateSubscription
 );
 
+usersRouter.patch(
+    '/avatars',
+    mdw.authenticate,
+    mdw.uploadAvatar.single('avatar'),
+    mdw.modifyAvatar,
+    ctrl.updateAvatar
+);
+
 module.exports = usersRouter;

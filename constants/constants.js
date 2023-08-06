@@ -1,5 +1,10 @@
-const subscriptionList = ['starter', 'pro', 'business'];
+const usersSubscriptionList = ['starter', 'pro', 'business'];
 
-const BEARER = 'Bearer';
+const allowedImagesMimeTypes = [
+    'image/jpg',
+    'image/jpeg',
+    'image/png',
+    'image/bmp',
+];
 
-module.exports = { subscriptionList, BEARER };
+module.exports = { usersSubscriptionList, allowedImagesMimeTypes };
