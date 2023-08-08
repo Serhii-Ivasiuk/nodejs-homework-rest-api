@@ -16,6 +16,15 @@ usersRouter.post(
     ctrl.register
 );
 
+usersRouter.get('/verify/:verificationToken', ctrl.verifyEmail);
+
+usersRouter.post(
+    '/verify/',
+    mdw.validateEmptyBody,
+    mdw.validateBody(joiUsersSchemas.verify),
+    ctrl.resendVerifyEmail
+);
+
 usersRouter.post(
     '/login',
     mdw.validateEmptyBody,
