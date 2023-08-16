@@ -23,6 +23,18 @@ const register = Joi.object({
     token: Joi.string().default(''),
 });
 
+const verify = Joi.object({
+    email: Joi.string()
+        .email({
+            minDomainSegments: 2,
+            tlds: { allow: ['com', 'net'] },
+        })
+        .required()
+        .messages({
+            'any.required': 'missing required "email" field',
+        }),
+});
+
 const login = Joi.object({
     password: Joi.string().min(6).required().messages({
         'any.required': 'missing required "password" field',
@@ -49,7 +61,7 @@ const updateSubscription = Joi.object({
         }),
 });
 
-const joiUsersSchemas = { register, login, updateSubscription };
+const joiUsersSchemas = { register, verify, login, updateSubscription };
 
 // Mongoose schemas
 const schema = {
@@ -72,6 +84,14 @@ const schema = {
         required: true,
     },
     token: { type: String, default: '' },
+    verify: {
+        type: Boolean,
+        default: false,
+    },
+    verificationToken: {
+        type: String,
+        required: [true, 'Verify token is required'],
+    },
 };
 
 const settings = {
